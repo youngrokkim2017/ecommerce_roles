@@ -3,20 +3,16 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  // Link
 } from "react-router-dom";
+import CreateProduct from './components/product/CreateProduct';
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Switch>
-          <Route path="/about">
-            About
-          </Route>
-          <Route path="/users">
-            Users
-          </Route>
+          <Route path="/create-product" component={CreateProduct} />
           <Route path="/">
             Home
           </Route>
