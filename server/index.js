@@ -5,6 +5,12 @@ const mongoose = require('mongoose')
 const db = require('../config/keys').mongoURI
 require('dotenv').config();
 
+// MODELS
+
+
+// CONTROLLERS
+const { createProduct } = require('./controllers/createProductController')
+
 mongoose
     .connect(db, { useNewUrlParser: true }) // .connect returns a promise
     .then(() => console.log('connected to mongoDB'))
@@ -13,8 +19,6 @@ mongoose
 app.use(express.json())
 app.use(cors())
 
-app.get('/whatsup', (req, res) => {
-    res.send('smells like up dog')
-})
+app.post('/products', createProduct)
 
 app.listen(5000)
