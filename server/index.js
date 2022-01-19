@@ -10,6 +10,7 @@ require('dotenv').config();
 
 // CONTROLLERS
 const { createProduct } = require('./controllers/createProductController')
+const { getProducts } = require('./controllers/getProductsController')
 
 mongoose
     .connect(db, { useNewUrlParser: true }) // .connect returns a promise
@@ -19,6 +20,8 @@ mongoose
 app.use(express.json())
 app.use(cors())
 
+// API ROUTE ENDPOINTS
 app.post('/products', createProduct)
+app.get('/products', getProducts)
 
 app.listen(5000)

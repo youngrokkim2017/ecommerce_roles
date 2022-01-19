@@ -6,6 +6,7 @@ import {
   // Link
 } from "react-router-dom";
 import CreateProduct from './components/product/CreateProduct';
+import Products from './components/product/Products';
 
 function App() {
   return (
@@ -13,9 +14,7 @@ function App() {
       <Router>
         <Switch>
           <Route path="/create-product" component={CreateProduct} />
-          <Route path="/">
-            Home
-          </Route>
+          <Route path="/" component={Products} />
         </Switch>
       </Router>
     </div>
