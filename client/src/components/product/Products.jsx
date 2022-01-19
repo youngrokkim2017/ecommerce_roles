@@ -5,7 +5,7 @@ import { Row, Col, Container, Card, Button } from 'react-bootstrap'
 // import cart context
 import { ShoppingCartContext } from '../../App'
 
-const ProductCard = ({ product, addProductToCart }) => {
+const ProductCard = ({ product, addProductToCart }) => (
     <div key={product._id}>
         <Card style={{ width: '18rem' }}>
           {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
@@ -23,7 +23,7 @@ const ProductCard = ({ product, addProductToCart }) => {
           </Card.Body>
         </Card>
     </div>
-}
+)
 
 const NUMBER_OF_COLUMNS = 3;
 
