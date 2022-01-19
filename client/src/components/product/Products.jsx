@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import { Row, Col, Container, Card, Button } from 'react-bootstrap'
 
-const ProductCard = ({product}) => {
+// import cart context
+import { ShoppingCartContext } from '../../App'
+
+const ProductCard = ({ product, addProductToCart }) => {
     <div key={product._id}>
         <Card style={{ width: '18rem' }}>
           {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
@@ -11,7 +14,12 @@ const ProductCard = ({product}) => {
             <Card.Text>
               {product.description}
             </Card.Text>
-            <Button variant="primary">Add to Cart</Button>
+            <Button 
+                variant="primary"
+                onClick={() => addProductToCart(product)}
+            >
+                Add to Cart
+            </Button>
           </Card.Body>
         </Card>
     </div>
@@ -21,6 +29,7 @@ const NUMBER_OF_COLUMNS = 3;
 
 function Products() {
     const [products, setProducts] = useState([])
+    const [cart, setCart] = useContext(ShoppingCartContext)
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -30,8 +39,12 @@ function Products() {
         fetchProducts()
     }, [])
 
-    getProductsInColumn = (products, numberOfColumns, column) => {
+    const getProductsInColumn = (products, numberOfColumns, column) => {
         return products.filter((col, index) => index % numberOfColumns === column)
+    }
+
+    const addProductToCart = (product ) => {
+        setCart([...cart, product])
     }
 
     return (
@@ -48,6 +61,7 @@ function Products() {
                           <ProductCard
                             key={product._id}
                             product={product}
+                            addProductToCart={addProductToCart}
                           />
                         ))}
                       </Col>
