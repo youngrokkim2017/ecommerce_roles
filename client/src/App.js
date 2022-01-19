@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import CreateProduct from './components/product/CreateProduct';
 import Products from './components/product/Products';
+import Header from './components/header/Header';
 
 export const ShoppingCartContext = React.createContext();
 
@@ -17,6 +18,7 @@ function App() {
   return (
     <div className="App">
       <ShoppingCartContext.Provider value={cartState}>
+        <Header />
         <Router>
           <Switch>
             <Route path="/create-product" component={CreateProduct} />
