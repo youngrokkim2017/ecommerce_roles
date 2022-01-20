@@ -46,7 +46,7 @@ function Products() {
     }
 
     const addProductToCart = (product ) => {
-        setCart([...cart, product])
+        setCart([...cart, { ...product }])
     }
 
     const onSearchChange = (e) => {
