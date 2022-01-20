@@ -9,6 +9,7 @@ import {
 import CreateProduct from './components/product/CreateProduct';
 import Products from './components/product/Products';
 import Header from './components/header/Header';
+import ShoppingCart from './components/cart/ShoppingCart';
 
 export const ShoppingCartContext = React.createContext();
 
@@ -21,8 +22,9 @@ function App() {
         <Router>
           <Header />
           <Switch>
-            <Route path="/create-product" component={CreateProduct} />
             <Route path="/" component={Products} />
+            <Route path="/create-product" component={CreateProduct} />
+            <Route path="/cart" component={ShoppingCart} />
           </Switch>
         </Router>
       </ShoppingCartContext.Provider>
