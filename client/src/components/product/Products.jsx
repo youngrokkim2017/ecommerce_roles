@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
-import { Row, Col, Container, Card, Button, Form } from 'react-bootstrap'
+import { Row, Col, Container, Card, Button, Form, Toast, ToastContainer } from 'react-bootstrap'
 
 // import cart context
 import { ShoppingCartContext } from '../../App'
@@ -30,6 +30,7 @@ const NUMBER_OF_COLUMNS = 3;
 function Products() {
     const [products, setProducts] = useState([])
     const [search, setSearch] = useState('')
+    const [showToast, setShowToast] = useState(false)
 
     const [cart, setCart] = useContext(ShoppingCartContext)
 
@@ -47,6 +48,8 @@ function Products() {
 
     const addProductToCart = (product ) => {
         setCart([...cart, { ...product }])
+
+        setShowToast(true)
     }
 
     const onSearchChange = (e) => {
@@ -60,7 +63,21 @@ function Products() {
     }
 
     return (
-        <div>
+        <>
+            <ToastContainer style={{'z-index': "1"}} className="p-3 position-fixed" position='top-center'>
+              <Toast onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide>
+                <Toast.Header closeButton={false}>
+                  <img
+                    src="holder.js/20x20?text=%20"
+                    className="rounded me-2"
+                    alt=""
+                  />
+                  <strong className="me-auto">Bootstrap</strong>
+                  <small>11 mins ago</small>
+                </Toast.Header>
+                <Toast.Body>Hello, world! This is a toast message.</Toast.Body>
+              </Toast>
+            </ToastContainer>
             <Container>
                 <Row>
                     <Col>
@@ -93,7 +110,7 @@ function Products() {
                     ))}
                 </Row>
             </Container>
-        </div>
+        </>
     )
 }
 
