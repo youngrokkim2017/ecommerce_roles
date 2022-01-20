@@ -18,8 +18,8 @@ function App() {
   return (
     <div className="App">
       <ShoppingCartContext.Provider value={cartState}>
-        <Header />
         <Router>
+          <Header />
           <Switch>
             <Route path="/create-product" component={CreateProduct} />
             <Route path="/" component={Products} />

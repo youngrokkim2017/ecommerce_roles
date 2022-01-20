@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { Link } from 'react-router-dom'
 import { ShoppingCartContext } from '../../App'
 
 function Header() {
@@ -6,7 +7,9 @@ function Header() {
 
     return (
         <div>
-            Cart {cart.length}
+            <Link to='/cart'>
+                Cart {cart.length}
+            </Link>
         </div>
     )
 }
