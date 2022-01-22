@@ -72,10 +72,10 @@ function Products() {
                     className="rounded me-2"
                     alt=""
                   />
-                  <strong className="me-auto">Bootstrap</strong>
-                  <small>11 mins ago</small>
+                  <strong className="me-auto">Success</strong>
+                  {/* <small>11 mins ago</small> */}
                 </Toast.Header>
-                <Toast.Body>Hello, world! This is a toast message.</Toast.Body>
+                <Toast.Body>Product Added to Cart</Toast.Body>
               </Toast>
             </ToastContainer>
             <Container>
