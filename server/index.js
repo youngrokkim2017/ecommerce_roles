@@ -11,6 +11,7 @@ require('dotenv').config();
 // CONTROLLERS
 const { createProduct } = require('./controllers/createProductController')
 const { getProducts } = require('./controllers/getProductsController')
+const { registerController } = require('./controllers/registerController')
 
 mongoose
     .connect(db, { useNewUrlParser: true }) // .connect returns a promise
@@ -23,6 +24,6 @@ app.use(cors())
 // API ROUTE ENDPOINTS
 app.post('/products', createProduct)
 app.get('/products', getProducts)
-app.get('/register', registerController)
+app.post('/register', registerController)
 
 app.listen(5000)
