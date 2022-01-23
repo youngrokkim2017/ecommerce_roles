@@ -12,5 +12,6 @@ exports.createProduct = async (req, res) => {
     console.log(req.body)
     const instance = new Product(req.body)
     await instance.save()
-    res.send('smells like up dog')
+    // res.send('smells like up dog')
+    res.json(instance)
 }
