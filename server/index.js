@@ -23,5 +23,6 @@ app.use(cors())
 // API ROUTE ENDPOINTS
 app.post('/products', createProduct)
 app.get('/products', getProducts)
+app.get('/register', registerController)
 
 app.listen(5000)
