@@ -60,11 +60,11 @@ function Products() {
 
     const getFilteredProducts = (products) => {
         return products.filter((product) => product.name.includes(search))
-    }
+    } 
 
     return (
         <>
-            <ToastContainer style={{'z-index': "1"}} className="p-3 position-fixed" position='top-center'>
+            <ToastContainer style={{zIndex: "1"}} className="p-3 position-fixed" position='top-center'>
               <Toast onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide>
                 <Toast.Header closeButton={false}>
                   <img
