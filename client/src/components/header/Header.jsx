@@ -17,6 +17,16 @@ function Header() {
                         <span>signed in as {user.user?.username}</span>
                     </Link>
                 </Navbar.Brand>
+                {!user.token &&
+                    <Link to='/login'>
+                        Login
+                    </Link>
+                }
+                {user.token &&
+                    <Link to='/logout'>
+                        Logout
+                    </Link>
+                }
                 {user.token &&
                     <Link to='/cart'>
                         Cart {cart.length}

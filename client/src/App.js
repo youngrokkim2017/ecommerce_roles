@@ -12,6 +12,7 @@ import Header from './components/header/Header';
 import ShoppingCart from './components/cart/ShoppingCart';
 import RegisterPage from './components/user/RegisterPage';
 import LoginPage from './components/user/LoginPage';
+import LogoutPage from './components/user/LogoutPage';
 
 export const ShoppingCartContext = React.createContext();
 export const UserContext = React.createContext();
@@ -32,6 +33,7 @@ function App() {
               <Route path="/cart" component={ShoppingCart} />
               <Route path="/register" component={RegisterPage} />
               <Route path="/login" component={LoginPage} />
+              <Route path="/logout" component={LogoutPage} />
             </Switch>
           </Router>
         </ShoppingCartContext.Provider>
