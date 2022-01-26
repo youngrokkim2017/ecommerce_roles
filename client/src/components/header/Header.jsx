@@ -17,9 +17,11 @@ function Header() {
                         <span>signed in as {user.user?.username}</span>
                     </Link>
                 </Navbar.Brand>
-                <Link to='/cart'>
-                    Cart {cart.length}
-                </Link>
+                {user.token &&
+                    <Link to='/cart'>
+                        Cart {cart.length}
+                    </Link>
+                }
             </Container>
         </Navbar>
     )
