@@ -4,8 +4,9 @@ import { Row, Col, Container, Card, Button, Form, Toast, ToastContainer } from '
 
 // import cart context
 import { ShoppingCartContext } from '../../App'
+import { UserContext } from '../../App'
 
-const ProductCard = ({ product, addProductToCart }) => (
+const ProductCard = ({ isLoggedIn, product, addProductToCart }) => (
     <div key={product._id} className='mb-4'>
         <Card style={{ width: '18rem' }}>
           {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
@@ -14,12 +15,14 @@ const ProductCard = ({ product, addProductToCart }) => (
             <Card.Text>
               {product.description}
             </Card.Text>
-            <Button 
-                variant="primary"
-                onClick={() => addProductToCart(product)}
-            >
-                Add to Cart
-            </Button>
+            {isLoggedIn && (
+              <Button 
+                  variant="primary"
+                  onClick={() => addProductToCart(product)}
+              >
+                  Add to Cart
+              </Button>
+            )}
           </Card.Body>
         </Card>
     </div>
@@ -33,6 +36,7 @@ function Products() {
     const [showToast, setShowToast] = useState(false)
 
     const [cart, setCart] = useContext(ShoppingCartContext)
+    const [user, setUser] = useContext(UserContext)
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -101,6 +105,7 @@ function Products() {
                           column
                         ).map((product) => (
                           <ProductCard
+                            isLoggedIn={!!user.token}
                             key={product._id}
                             product={product}
                             addProductToCart={addProductToCart}
