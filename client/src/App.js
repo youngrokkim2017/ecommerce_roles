@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -19,7 +19,22 @@ export const UserContext = React.createContext();
 
 function App() {
   const cartState = useState([])
-  const userState = useState({})
+  // const userState = useState({})
+  const userState = useState(() => {
+    const userInLocalStorage = localStorage.getItem('user')
+
+    return userInLocalStorage ? JSON.parse(userInLocalStorage) : {}
+
+    // if (userInLocalStorage) {
+    //   return JSON.parse(userInLocalStorage)
+    // } else {
+    //   return {}
+    // }
+  })
+
+  useEffect(() => {
+    localStorage.setItem('user', JSON.stringify(userState[0]))
+  }, userState)
 
   return (
     <div className="App">
