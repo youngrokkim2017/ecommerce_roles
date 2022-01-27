@@ -14,13 +14,20 @@ function Header() {
                 <Navbar.Brand>
                     <Link to="/">
                         TITLE
-                        <span>signed in as {user.user?.username}</span>
                     </Link>
                 </Navbar.Brand>
                 {!user.token &&
-                    <Link to='/login'>
-                        Login
-                    </Link>
+                    <>
+                        <Link to='/register'>
+                            Register
+                        </Link>
+                        <Link to='/login'>
+                            Login
+                        </Link>
+                    </>
+                }
+                {user.token &&
+                    <span>signed in as {user.user?.username}</span>
                 }
                 {user.token &&
                     <Link to='/logout'>
