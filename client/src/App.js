@@ -44,7 +44,10 @@ function App() {
             <Header />
             <Switch>
               <Route path="/" component={Products} />
-              <Route path="/create-product" component={CreateProduct} />
+              {/* <Route path="/create-product" component={CreateProduct} /> */}
+              {userState[0].token && (
+                <Route path="/create-product" component={CreateProduct} />
+              )}
               <Route path="/cart" component={ShoppingCart} />
               <Route path="/register" component={RegisterPage} />
               <Route path="/login" component={LoginPage} />
