@@ -15,7 +15,12 @@ exports.createProduct = async (req, res) => {
 
     //verify token
     try {
-        jwt.verify(token, 'my-secret-password')
+        const user = jwt.verify(token, 'my-secret-password')
+
+        if (user.role !== 'admin') {
+            return res.status(403).send('authorization error')
+        }
+
         const instance = new Product(req.body)
         await instance.save()
         res.json(instance)

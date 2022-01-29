@@ -45,7 +45,7 @@ function App() {
             <Switch>
               <Route path="/" component={Products} />
               {/* <Route path="/create-product" component={CreateProduct} /> */}
-              {userState[0].token && (
+              {userState[0].token && userState[0].user.role === 'admin' && (
                 <Route path="/create-product" component={CreateProduct} />
               )}
               <Route path="/cart" component={ShoppingCart} />
