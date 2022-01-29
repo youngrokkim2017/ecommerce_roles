@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken')
 const Product = require('../models/Product');
 
 // export const createProduct = async (req, res) => {
@@ -9,9 +10,16 @@ exports.createProduct = async (req, res) => {
     //     description: 'my horn can pierce the sky'
     // })
 
-    console.log(req.body)
-    const instance = new Product(req.body)
-    await instance.save()
-    // res.send('smells like up dog')
-    res.json(instance)
+    const authorization = req.headers.authorization
+    const token = authorization.substring(7)
+
+    //verify token
+    try {
+        jwt.verify(token, 'my-secret-password')
+        const instance = new Product(req.body)
+        await instance.save()
+        res.json(instance)
+    } catch (err) {
+        res.status(403).send('authorization error')
+    }
 }

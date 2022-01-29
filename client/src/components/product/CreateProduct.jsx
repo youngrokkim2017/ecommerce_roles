@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import axios from 'axios'
 import { Row, Col, Container, Form, Button } from 'react-bootstrap'
+
+import { UserContext } from '../../App'
 
 const INITIAL_FORM = {
     name: '',
@@ -10,6 +12,7 @@ const INITIAL_FORM = {
 
 function CreateProduct() {
     const [form, setForm] = useState(INITIAL_FORM)
+    const [user] = useContext(UserContext)
 
     const updateFormValue = (key) => (e) => {
         setForm({
@@ -21,7 +24,11 @@ function CreateProduct() {
     const createProductHandler = async (e) => {
         e.preventDefault()
 
-        await axios.post("http://localhost:5000/products", form)
+        await axios.post("http://localhost:5000/products", form, {
+            headers: {
+                'Authorization': `Bearer ${user.token}`
+            }
+        })
 
         setForm(INITIAL_FORM)
     }
