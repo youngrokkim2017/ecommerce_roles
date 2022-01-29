@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { Row, Col, Container, Card, Button, Form, Toast, ToastContainer } from 'react-bootstrap'
 
@@ -6,7 +7,7 @@ import { Row, Col, Container, Card, Button, Form, Toast, ToastContainer } from '
 import { ShoppingCartContext } from '../../App'
 import { UserContext } from '../../App'
 
-const ProductCard = ({ isLoggedIn, product, addProductToCart }) => (
+const ProductCard = ({ isAdmin, isLoggedIn, product, addProductToCart }) => (
     <div key={product._id} className='mb-4'>
         <Card style={{ width: '18rem' }}>
           {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
@@ -23,6 +24,11 @@ const ProductCard = ({ isLoggedIn, product, addProductToCart }) => (
                   Add to Cart
               </Button>
             )}
+            {isAdmin &&
+              <Link to={`/products/${product._id}/edit`}>
+                Edit
+              </Link>
+            }
           </Card.Body>
         </Card>
     </div>
@@ -106,6 +112,7 @@ function Products() {
                         ).map((product) => (
                           <ProductCard
                             isLoggedIn={!!user.token}
+                            isAdmin={user.user.role === 'admin'}
                             key={product._id}
                             product={product}
                             addProductToCart={addProductToCart}
