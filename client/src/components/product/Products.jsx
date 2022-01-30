@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { Row, Col, Container, Card, Button, Form, Toast, ToastContainer } from 'react-bootstrap'
+import { useIsAdmin } from '../../hooks/useIsAdmin'
+import { useIsLoggedIn } from '../../hooks/useIsLoggedIn'
 
 // import cart context
 import { ShoppingCartContext } from '../../App'
@@ -36,13 +38,26 @@ const ProductCard = ({ isAdmin, isLoggedIn, product, addProductToCart }) => (
 
 const NUMBER_OF_COLUMNS = 3;
 
+// const useIsAdmin = () => {
+//   const [user] = useContext(UserContext)
+//   return user.user?.role === 'admin'
+// }
+
+// const useIsLoggedIn = () => {
+//   const [user] = useContext(UserContext)
+//   return !!user.token
+// }
+
 function Products() {
     const [products, setProducts] = useState([])
     const [search, setSearch] = useState('')
     const [showToast, setShowToast] = useState(false)
 
     const [cart, setCart] = useContext(ShoppingCartContext)
-    const [user, setUser] = useContext(UserContext)
+    // const [user, setUser] = useContext(UserContext)
+
+    const isAdmin = useIsAdmin()
+    const isLoggedIn = useIsLoggedIn()
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -111,8 +126,10 @@ function Products() {
                           column
                         ).map((product) => (
                           <ProductCard
-                            isLoggedIn={!!user.token}
-                            isAdmin={user.user.role === 'admin'}
+                            // isLoggedIn={!!user.token}
+                            isLoggedIn={isLoggedIn}
+                            // isAdmin={user.user.role === 'admin'}
+                            isAdmin={isAdmin}
                             key={product._id}
                             product={product}
                             addProductToCart={addProductToCart}
